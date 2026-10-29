@@ -24,9 +24,10 @@ export default function Transition() {
         // setSearchKey(inputVal)
         startTransition(() => setSearchKey(inputVal))
     };
-    const filterList = () => initList.filter(item => item.text.startsWith(searchKey));
+    // const filterList = () => initList.filter(item => item.text.startsWith(searchKey));
     
-    const showList:ListItem[] = useMemo(() => filterList(), [searchKey])
+    // const showList:ListItem[] = useMemo(() => filterList(), [searchKey])
+    const showList:ListItem[] = useMemo(() => initList.filter(item => item.text.startsWith(searchKey)), [searchKey, initList])
 
     return (
         <div>

@@ -6,7 +6,7 @@ type ListItem = {
 }
 
 export default function FilterList() {
-    const [searcheKey, setSearchKey] = useState('');
+    const [searchKey, setSearchKey] = useState('');
     const initList:ListItem[] = useMemo(() => {
         const list:ListItem[] = [];
         for (let i = 0; i < 5000; i++) {
@@ -20,9 +20,10 @@ export default function FilterList() {
         return list;
     }, [])
     const changeHandle = (e:React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
-    const filterList = () => initList.filter(item => item.text.startsWith(searcheKey));
+    // const filterList = () => initList.filter(item => item.text.startsWith(searchKey));
     
-    const showList:ListItem[] = useMemo(() => filterList(), [searcheKey])
+    // const showList:ListItem[] = useMemo(() => filterList(), [searchKey])
+    const showList:ListItem[] = useMemo(() => initList.filter(item => item.text.startsWith(searchKey)), [searchKey, initList])
 
     return (
         <div>
