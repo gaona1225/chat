@@ -7,7 +7,7 @@ export default function RefTimer() {
     const handleStartClick = () => {
         if (timerRef.current) return;
         // console.log('timer', timerRef.current);
-        let timerId = setInterval(() => {
+        const timerId = setInterval(() => {
             setId(id => ++id);
         }, 1000)
         timerRef.current = timerId;

@@ -6,7 +6,7 @@ type ListItem = {
 export default function BigList() {
     const initList: ListItem[] = [];
     for (let i = 0; i < 5000; i++) {
-        let listItem = {
+        const listItem = {
             id : `id${i+1}`,
             text: `${i+1}List`
         }

@@ -9,9 +9,9 @@ export default function Transition() {
     const [searchKey, setSearchKey] = useState('');
     const [isPending, startTransition] = useTransition();
     const initList:ListItem[] = useMemo(() => {
-        let list:ListItem[] = [];
+        const list:ListItem[] = [];
         for (let i = 0; i < 5000; i++) {
-            let listItem = {
+            const listItem = {
                 id : `id${i+1}`,
                 text: `${i+1}List`
             }
