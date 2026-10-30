@@ -5,15 +5,15 @@ import Main from './Main'
 import Footer from './Footer'
 import chatHistory from './data';
 
-type dataType = { role: 'user' | 'assistant', text: string }
+type dataType = { id: string, role: 'user' | 'assistant', text: string }
 
 export default function Chat() {
     const [chatList, setChatList] = useState(chatHistory);
     // todo get chatHistory from servers
-    const updateList = inputVal => {
+    const updateList = (inputVal:string) => {
         // console.log('updateList...', inputVal);
         const newChat: dataType = {
-            id: Date.now(),
+            id: Date.now().toString(),
             role: 'user',
             text: inputVal
         };
@@ -21,7 +21,7 @@ export default function Chat() {
         // todo post data to server
         setTimeout(() => {
             const mockResp: dataType = {
-                id: Date.now(),
+                id: Date.now().toString(),
                 role: 'assistant',
                 text: '我是mock response...'
             }
