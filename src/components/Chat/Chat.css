@@ -22,6 +22,7 @@ header {
     width: 100%;
     background: #eee;
     flex: 1;
+    overflow: hidden;
 }
 
 .chat-main ul {
@@ -29,6 +30,7 @@ header {
     margin: 0;
     padding: 0;
     overflow-y: auto;
+    height: 100%;
 }
 
 .chat-list {
@@ -38,8 +40,6 @@ header {
 .chat-list span {
     padding: 6px;
     border-radius: 12px;
-    height: 32px;
-    line-height: 32px;
     display: inline-block;
 }
 
@@ -49,6 +49,7 @@ header {
 
 .chat-user span {
     background: #2196F3;
+    color: #fff;
 }
 
 .chat-assistant {
@@ -74,7 +75,7 @@ footer input {
     flex: 1 auto;
     margin: 0 12px 0 0;
     padding: 0 6px;
-    cursor: pointer;
+    cursor: text;
     outline: none;
 }
 

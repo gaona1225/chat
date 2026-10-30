@@ -7,11 +7,11 @@ const chatHistory: dataType[] = [{
 },{
     id: 'user1',
     role: 'user',
-    text: '我是Anna'
+    text: 'fdsafsadfsf附近的撒辣椒粉快乐撒的肌肤拉萨的克己复礼圣诞节福利圣诞节福利开始的肌肤立刻受到警方立刻圣诞节啊弗兰克圣诞节啊分开了的撒娇分开了睡大觉'
 },{
     id: 'ass0',
     role: 'assistant',
-    text: '你好Anna'
+    text: 'fdsafsadfsf附近的撒辣椒粉快乐撒的肌肤拉萨的克己复礼圣诞节福利圣诞节福利开始的肌肤立刻受到警方立刻圣诞节啊弗兰克圣诞节啊分开了的撒娇分开了睡大觉'
 },{
     id: 'ass1',
     role: 'assistant',
