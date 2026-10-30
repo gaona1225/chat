@@ -4,11 +4,10 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import chatHistory from './data';
-
-type dataType = { id: string, role: 'user' | 'assistant', text: string }
+import type {dataType} from './data';
 
 export default function Chat() {
-    const [chatList, setChatList] = useState(chatHistory);
+    const [chatList, setChatList] = useState<dataType[]>(chatHistory);
     // todo get chatHistory from servers
     const updateList = (inputVal:string) => {
         // console.log('updateList...', inputVal);

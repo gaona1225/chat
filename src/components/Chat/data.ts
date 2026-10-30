@@ -1,4 +1,6 @@
-const chatHistory = [{
+export type dataType = { id: string; role: 'user' | 'assistant'; text: string };
+
+const chatHistory: dataType[] = [{
     id: 'user0',
     role: 'user',
     text: '你好assistant'

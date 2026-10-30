@@ -1,4 +1,4 @@
-type dataType = { id: string, role: 'user' | 'assistant', text: string }
+import type {dataType} from './data';
 
 export default function Main({chatHistory}: {chatHistory:dataType[]}) {
     return (
