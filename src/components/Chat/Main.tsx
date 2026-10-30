@@ -11,8 +11,12 @@ export default function Main({chatHistory}: {chatHistory:dataType[]}) {
     return (
         <div className="chat-main">
             <ul ref={ulRef}>
-                {chatHistory.map((item:dataType) => (
-                    <li key={item.id} className={`chat-list chat-${item.role}`}><span>{item.text}</span></li>
+                {
+                    chatHistory.length === 0 ?
+                    <p>在下方输入开始聊天</p>
+                    :
+                    chatHistory.map((item:dataType) => (
+                    <li key={item.id} className={`chat-list chat-${item.role}`}><span>{item.text || '...'}</span></li>
                 ))}
             </ul>
         </div>

@@ -3,13 +3,13 @@ import './Chat.css'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
-import chatHistory from './data';
 import type {dataType} from './data';
+import {ai, AIModel} from '../../api/gemini';
 
 export default function Chat() {
-    const [chatList, setChatList] = useState<dataType[]>(chatHistory);
-    // todo get chatHistory from servers
-    const updateList = (inputVal:string) => {
+    const [chatList, setChatList] = useState<dataType[]>([]);
+    
+    const updateList = async (inputVal:string) => {
         // console.log('updateList...', inputVal);
         const newChat: dataType = {
             id: Date.now().toString(),
@@ -17,15 +17,35 @@ export default function Chat() {
             text: inputVal
         };
         setChatList([...chatList, newChat]);
-        // todo post data to server
-        setTimeout(() => {
-            const mockResp: dataType = {
-                id: Date.now().toString(),
-                role: 'assistant',
-                text: '我是mock response...'
+        const chat = ai.chats.create({
+            model: AIModel,
+            history: chatList.map(item => ({
+                role: item.role === 'assistant' ? 'model' : 'user',
+                parts: [{text: item.text}]
+            }))
+        })
+        // console.log('chat:', chat);
+        const respId = Date.now().toString();
+        const assistantResp: dataType = {
+            id: respId,
+            role: 'assistant',
+            text: ''
+        }
+        setChatList(prevList => [...prevList, assistantResp]);
+        // const response = await chat.sendMessage({message: inputVal});
+        try {
+            const response = await chat.sendMessageStream({message: inputVal});
+            let fullText = '';
+            for await(const chunk of response) {
+                fullText += chunk.text ?? '';
+                const snapText = fullText;
+                setChatList(prevList => prevList.map(item => item.id === respId ? {...item, text: snapText} : item));
             }
-            setChatList(prevList => [...prevList, mockResp]);
-        }, 100);
+            setChatList(prevList => prevList.map(item => item.id === respId && item.text === '' ? {...item, text: '换个问法试试？'} : item))
+            // console.log('response:', response);
+        } catch(e) {
+            setChatList(prevList => prevList.map(item => item.id === respId && item.text === '' ? {...item, text: '系统繁忙，请稍后再试!'} : item))
+        }
     }
     return (
         <div className='chat-contain'>

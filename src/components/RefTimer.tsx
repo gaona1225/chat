@@ -3,7 +3,7 @@ import {useState, useRef, useEffect} from 'react';
 
 export default function RefTimer() {
     const [id, setId] = useState(0);
-    const timerRef = useRef(0);
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const handleStartClick = () => {
         if (timerRef.current) return;
         // console.log('timer', timerRef.current);
@@ -14,13 +14,15 @@ export default function RefTimer() {
     }
     const handleStopClick = () => {
         // console.log('handleStopClick...', timerRef.current)
+        if (!timerRef.current) return;
         clearInterval(timerRef.current);
-        timerRef.current = 0;
+        timerRef.current = null;
     }
     useEffect(() => {
         return () => {
+            if (!timerRef.current) return;
             clearInterval(timerRef.current);
-            timerRef.current = 0;
+            timerRef.current = null;
         };
     }, [])
     return (
