@@ -12,7 +12,7 @@ export default function Chat() {
     const updateList = async (inputVal:string) => {
         // console.log('updateList...', inputVal);
         const newChat: dataType = {
-            id: Date.now().toString(),
+            id: Date.now().toString() + Math.random(),
             role: 'user',
             text: inputVal
         };
@@ -25,7 +25,7 @@ export default function Chat() {
             }))
         })
         // console.log('chat:', chat);
-        const respId = Date.now().toString();
+        const respId = Date.now().toString() + Math.random();
         const assistantResp: dataType = {
             id: respId,
             role: 'assistant',

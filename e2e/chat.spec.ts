@@ -29,26 +29,23 @@ test('3. 点发送：右蓝气泡出现 + 输入框清空', async ({ page }) => 
   await expect(input).toHaveValue('');
 });
 
-test('4. mock 回复：左灰气泡出现', async ({ page }) => {
+test('4. 发送后：AI 气泡占位出现', async ({ page }) => {
   await page.locator('footer input').fill('hello test');
   await page.locator('footer button').click();
-  const reply = page.locator('.chat-main li.chat-assistant', {
-    hasText: '我是mock response...',
-  });
+  const reply = page.locator('.chat-main li.chat-assistant').first();
   await expect(reply).toBeVisible({ timeout: 8000 });
 });
 
-test('5. 回车发送', async ({ page }) => {
+test('5. 回车发送：用户气泡 + AI 气泡都出现', async ({ page }) => {
   const input = page.locator('footer input');
   await input.fill('second message');
   await input.press('Enter');
   const bubble = page.locator('.chat-main li.chat-user', { hasText: 'second message' });
   await expect(bubble).toBeVisible();
-  const reply = page.locator('.chat-main li.chat-assistant', {
-    hasText: '我是mock response...',
-  });
+  const reply = page.locator('.chat-main li.chat-assistant').first();
   await expect(reply).toBeVisible({ timeout: 8000 });
 });
+
 
 test('6. 空输入：按钮禁用，点不动', async ({ page }) => {
   const button = page.locator('footer button');
@@ -66,7 +63,7 @@ test('7. 消息多时：footer 不被顶出可视区 + 自动滚到底', async (
     await input.fill(`msg ${i}`);
     await button.click();
   }
-  // 等 mock 回复跟上
+  // 等 回复跟上
   await page.waitForTimeout(2500);
 
   const footerBox = await page.locator('footer').boundingBox();
