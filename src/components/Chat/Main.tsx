@@ -7,7 +7,6 @@ export default function Main({chatHistory}: {chatHistory:dataType[]}) {
         if (ulRef.current) {
             ulRef.current.scrollTop = ulRef.current.scrollHeight;
         }
-        return (() => {});
     }, [chatHistory])
     return (
         <div className="chat-main">
