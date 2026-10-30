@@ -4,7 +4,7 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import type {dataType} from './data';
-import {ai, AIModel} from '../../api/gemini';
+import {getAI, AIModel} from '../../api/gemini';
 
 export default function Chat() {
     const [chatList, setChatList] = useState<dataType[]>([]);
@@ -17,14 +17,7 @@ export default function Chat() {
             text: inputVal
         };
         setChatList([...chatList, newChat]);
-        const chat = ai.chats.create({
-            model: AIModel,
-            history: chatList.map(item => ({
-                role: item.role === 'assistant' ? 'model' : 'user',
-                parts: [{text: item.text}]
-            }))
-        })
-        // console.log('chat:', chat);
+
         const respId = Date.now().toString() + Math.random();
         const assistantResp: dataType = {
             id: respId,
@@ -32,8 +25,16 @@ export default function Chat() {
             text: ''
         }
         setChatList(prevList => [...prevList, assistantResp]);
-        // const response = await chat.sendMessage({message: inputVal});
         try {
+            const chat = getAI().chats.create({
+                model: AIModel,
+                history: chatList.map(item => ({
+                    role: item.role === 'assistant' ? 'model' : 'user',
+                    parts: [{text: item.text}]
+                }))
+            })
+            // console.log('chat:', chat);
+            // const response = await chat.sendMessage({message: inputVal});
             const response = await chat.sendMessageStream({message: inputVal});
             let fullText = '';
             for await(const chunk of response) {
