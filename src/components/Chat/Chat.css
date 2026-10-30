@@ -1,0 +1,103 @@
+#root {
+    padding: 0;
+}
+.chat-contain {
+    background: #ffffff;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.chat-main {
+    width: 100%;
+    background: #eee;
+    flex: 1;
+}
+
+.chat-main ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.chat-list {
+    padding: 6px 12px;
+}
+
+.chat-list span {
+    padding: 6px;
+    border-radius: 12px;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+}
+
+.chat-user {
+    text-align: right;
+}
+
+.chat-user span {
+    background: #2196F3;
+}
+
+.chat-assistant {
+    text-align: left;
+}
+
+.chat-assistant span {
+    background: #fff;
+}
+
+footer {
+    width: 100%;
+    border: 1px solid #ccc;
+    display: flex;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+footer input {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: none;
+    flex: 1 auto;
+    margin: 0 12px 0 0;
+    padding: 0 6px;
+    cursor: pointer;
+    outline: none;
+}
+
+footer button {
+    background: #2196F3;
+    border: 1px solid #2196F3;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
+
+footer button:hover {
+    border: 1px solid #2196F3;
+    margin: 0;
+}
+
+.disable-btn {
+    background: #d7d2d2;
+    border: 1px solid #d7d2d2;
+    cursor: default;
+}
+.disable-btn:hover {
+    border: 1px solid #d7d2d2;
+}
