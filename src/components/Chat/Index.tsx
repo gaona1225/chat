@@ -5,7 +5,7 @@ import Main from './Main'
 import Footer from './Footer'
 import chatHistory from './data';
 
-type dataType = { id: string, role: 'user' | 'assistant', text: string }
+type dataType = { id: string, role: string, text: string }
 
 export default function Chat() {
     const [chatList, setChatList] = useState(chatHistory);

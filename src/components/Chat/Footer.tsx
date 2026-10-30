@@ -1,6 +1,6 @@
 import {useState, useMemo} from 'react';
 
-export default function Foot({onSubmitVal}) {
+export default function Foot({onSubmitVal}: {onSubmitVal: (val:string) => void}) {
     const [inputVal, setInputVal] = useState('');
     const isDisable: boolean = useMemo(() => inputVal === '', [inputVal]);
     const submitHandle = () => {
